@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifold Plumbing | Full-Service Plumbing for Austin Homes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transition: transform 0.35s ease;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #16a34a, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(22, 163, 74, 0.3);
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #16a34a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background-color: #15803d; transform: translateY(-1px); }
+
+        .hero {
+            padding: 140px 2rem 80px 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 24px;
+        }
+        .ping {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .hero h1 span {
+            background: linear-gradient(90deg, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: #94a3b8;
+            font-size: 1.15rem;
+            margin-bottom: 32px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .btn-secondary {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: white;
+            padding: 16px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: #1e293b; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding-top: 32px;
+            border-top: 1px solid #1e293b;
+        }
+        .stat-num { font-size: 1.75rem; font-weight: 800; color: #fff; }
+        .stat-label { font-size: 0.75rem; font-weight: 600; color: #64748b; margin-top: 4px; }
+
+        .quote-card {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid #1e293b;
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .quote-tag {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #16a34a;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .form-control {
+            width: 100%;
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        .form-control:focus { outline: none; border-color: #22c55e; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .urgency-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .urgency-btn {
+            background: #020617;
+            border: 1px solid #1e293b;
+            color: #cbd5e1;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .urgency-btn.active {
+            background: rgba(22, 163, 74, 0.2);
+            border-color: #22c55e;
+            color: #4ade80;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: #15803d; }
+
+        .gallery-banner {
+            max-width: 1280px;
+            margin: 0 auto 80px auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .gallery-card {
+            height: 260px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+            position: relative;
+            background: #0f172a;
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.5s;
+        }
+        .gallery-card:hover img { transform: scale(1.05); }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, #020617, transparent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+        .section-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #22c55e;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            padding: 32px;
+            transition: border-color 0.2s;
+        }
+        .service-card:hover { border-color: rgba(34, 197, 94, 0.5); }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+        .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+        .service-card p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .promise-section {
+            background: rgba(15, 23, 42, 0.4);
+            border-top: 1px solid #1e293b;
+            border-bottom: 1px solid #1e293b;
+            padding: 100px 0;
+        }
+        .promise-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .promise-item {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .slider-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+        }
+        .slider-img-after {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-img-before {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.4);
+        }
+        .slider-overlay {
+            position: absolute;
+            inset: 0;
+            width: 50%;
+            overflow: hidden;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #22c55e;
+            box-shadow: 0 0 15px #22c55e;
+            cursor: ew-resize;
+        }
+        .slider-knob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #16a34a;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .slider-input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .ticker {
+            background: #16a34a;
+            color: #020617;
+            padding: 16px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 900;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        footer {
+            background: #020617;
+            border-top: 1px solid #1e293b;
+            padding: 80px 2rem 40px 2rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+        .footer-grid h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid li { margin-bottom: 12px; }
+        .footer-grid a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+        .footer-grid a:hover { color: white; }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 20px 24px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        @media(max-width: 1024px) {
+            .hero, .promise-grid, .footer-grid, .services-grid, .gallery-banner { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.75rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <h4 id="toast-title" style="font-weight: 700; color: #fff; font-size: 0.95rem; margin-bottom: 4px;"></h4>
+        <p id="toast-message" style="font-size: 0.8rem; color: #94a3b8;"></p>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon">M</div>
+            <span>Manifold</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#promise">Promise</a>
+            <a href="#work">Real Work</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#areas">Service Areas</a>
+        </nav>
+        <div class="nav-cta">
+            <a href="tel:5125550142" class="phone-link">📞 (512) 555-0142</a>
+            <a href="#quote-section" class="btn-primary">Get a Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <div class="hero-badge">
+                <span class="ping"></span>
+                <span style="color: #fbbf24;">★★★★★</span>
+                <span>4.9 from 2,400+ verified reviews · Licensed & Insured TX</span>
+            </div>
+            <h1>On time, or the <span>visit fee is on us.</span></h1>
+            <p>Full-service plumbing for Austin homes — repairs, drains, water heaters, and repipes. Same-day service, seven days a week.</p>
+            <div class="hero-actions">
+                <a href="#quote-section" class="btn-primary" style="padding: 16px 28px; font-size: 1rem;">Get My Free Quote</a>
+                <a href="tel:5125550142" class="btn-secondary">Call (512) 555-0142</a>
+            </div>
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-num">12,000+</div>
+                    <div class="stat-label">JOBS COMPLETED</div>
+                </div>
+                <div>
+                    <div class="stat-num">25</div>
+                    <div class="stat-label">YEARS EXPERIENCE</div>
+                </div>
+                <div>
+                    <div class="stat-num">60 MIN</div>
+                    <div class="stat-label">AVG RESPONSE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Card -->
+        <div id="quote-section" class="quote-card">
+            <div class="quote-tag">01 · Free Quote</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;">Tell us what’s wrong</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 24px;">Get an upfront flat-rate quote today within minutes.</p>
+            
+            <form onsubmit="handleQuote(event)">
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <select class="form-control">
+                        <option>Water Heater Repair / Install</option>
+                        <option>Drain Cleaning & Clogs</option>
+                        <option>Whole Home Repipe</option>
+                        <option>Leak Detection & Repair</option>
+                        <option>Sewer Line Service</option>
+                        <option>Emergency Plumbing Repair</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ZIP Code</label>
+                        <input type="text" required placeholder="e.g. 78704" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" required placeholder="John Doe" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Urgency</label>
+                    <div class="urgency-grid">
+                        <button type="button" class="urgency-btn active" onclick="setUrgency(this)">Emergency</button>
+                        <button type="button" class="urgency-btn" onclick="setUrgency(this)">Today</button>
+                        <button type="button" class="urgency-btn" onclick="setUrgency(this)">This week</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="(512) 000-0000" class="form-control">
+                </div>
+                <button type="submit" class="submit-btn">Get a Free Quote</button>
+            </form>
+            <p style="font-size: 0.7rem; color: #64748b; text-align: center; margin-top: 16px;">No obligation · We reply within 15 minutes · Your info is never shared.</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Grid -->
+    <div class="gallery-banner">
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1542013936693-84d7e66cc6e3?auto=format&fit=crop&w=800&q=80" alt="Plumber arriving">
+            <div class="gallery-caption">Manifold technician arriving at a customer's front door</div>
+        </div>
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Copper and PEX work">
+            <div class="gallery-caption">Precise work on copper and PEX connections</div>
+        </div>
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Technicians reviewing">
+            <div class="gallery-caption">Two technicians reviewing a job beside their service van</div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="section-container">
+        <div class="section-header">
+            <div>
+                <span class="section-tag">02 · What we fix</span>
+                <h2 class="section-title">Comprehensive plumbing for Austin</h2>
+            </div>
+            <a href="#quote-section" style="color: #4ade80; text-decoration: none; font-weight: 600; font-size: 0.9rem;">See all specialized services →</a>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Emergency Repairs</h3>
+                <p>Burst pipes, sudden leaks, or overflowing fixtures handled 24/7 with zero overtime fees.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Book emergency →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌀</div>
+                <h3>Drain Cleaning</h3>
+                <p>Advanced hydro-jetting and rooter service to clear stubborn clogs and grease blockages permanently.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Clear a drain →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔥</div>
+                <h3>Water Heaters</h3>
+                <p>Tank and tankless water heater replacement, repair, and flush maintenance sized right for your home.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Explore water heaters →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>Whole-Home Repipe</h3>
+                <p>Upgrade aging galvanized or leaky polybutylene pipes to clean, high-grade PEX and copper lines.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Get repipe estimate →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Leak Detection</h3>
+                <p>Non-invasive electronic acoustic testing to pinpoint slab leaks and hidden wall leaks before destruction.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Find a leak →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚰</div>
+                <h3>Sewer Line Services</h3>
+                <p>Camera inspections, trenchless sewer repair, and root clearance for municipal connection lines.</p>
+                <a href="#quote-section" style="color: #4ade80; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Sewer line help →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Manifold Promise -->
+    <section id="promise" class="promise-section">
+        <div class="promise-grid">
+            <div>
+                <span class="section-tag">03 · The Manifold Promise</span>
+                <h2 class="section-title" style="margin-bottom: 20px;">Built around honesty and craftsmanship.</h2>
+                <p style="color: #94a3b8; font-size: 1rem; line-height: 1.6;">We don't do hidden fees or high-pressure sales. Every technician is background-checked, drug-tested, and trained to respect your home as if it were their own.</p>
+                
+                <div class="promise-item">
+                    <div class="check-icon">✓</div>
+                    <div>
+                        <h4 style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">Upfront flat-rate pricing</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8;">You approve the exact cost before a single wrench turns.</p>
+                    </div>
+                </div>
+                <div class="promise-item">
+                    <div class="check-icon">✓</div>
+                    <div>
+                        <h4 style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">2-year workmanship warranty</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8;">If anything fails due to our work, we return and fix it free.</p>
+                    </div>
+                </div>
+                <div class="promise-item">
+                    <div class="check-icon">✓</div>
+                    <div>
+                        <h4 style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">On-time arrival guarantee</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8;">If we're late, your dispatch/visit fee is completely waived.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 24px; overflow: hidden; height: 380px; position: relative;">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Tankless Water Heater install">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #020617, transparent); padding: 24px;">
+                        <h4 style="font-weight: 700; font-size: 1rem;">Manifold plumber installing a tankless water heater</h4>
+                        <p style="font-size: 0.75rem; color: #4ade80; font-weight: 600; margin-top: 4px;">tankless install · clean grade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Real Work Section -->
+    <section id="work" class="section-container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 48px auto;">
+            <span class="section-tag">05 · Real work</span>
+            <h2 class="section-title">No staging, no stock photos.</h2>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 8px;">Every job is documented. Grab the handle and drag across a real Austin repipe project.</p>
+        </div>
+
+        <div class="slider-container">
+            <img src="https://images.unsplash.com/photo-1542013936693-84d7e66cc6e3?auto=format&fit=crop&w=1200&q=80" class="slider-img-after" alt="After repipe">
+            <div id="slider-overlay" class="slider-overlay" style="width: 50%;">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" class="slider-img-before" style="width: 900px; max-width: none;" alt="Before repipe">
+            </div>
+            <div id="slider-handle" class="slider-handle" style="left: 50%;">
+                <div class="slider-knob">↔</div>
+            </div>
+            <input type="range" min="0" max="100" value="50" oninput="slide(this.value)" class="slider-input">
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <span style="background: #0f172a; border: 1px solid #1e293b; padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; color: #cbd5e1;">📍 Master bath repipe — Cedar Park, TX</span>
+        </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker">
+        <div class="ticker-content">
+            AUSTIN &nbsp;✦&nbsp; ROUND ROCK &nbsp;✦&nbsp; CEDAR PARK &nbsp;✦&nbsp; GEORGETOWN &nbsp;✦&nbsp; PFLUGERVILLE &nbsp;✦&nbsp; LEANDER &nbsp;✦&nbsp; KYLE & BUDA &nbsp;&nbsp;&nbsp;&nbsp;
+            AUSTIN &nbsp;✦&nbsp; ROUND ROCK &nbsp;✦&nbsp; CEDAR PARK &nbsp;✦&nbsp; GEORGETOWN &nbsp;✦&nbsp; PFLUGERVILLE &nbsp;✦&nbsp; LEANDER &nbsp;✦&nbsp; KYLE & BUDA
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="nav-brand" style="margin-bottom: 16px;">
+                    <div class="brand-icon">M</div>
+                    <span>Manifold</span>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.6;">Full-service plumbing for the greater Austin metro. Fixed right, or we come back free.</p>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Emergency</a></li>
+                    <li><a href="#services">Drain cleaning</a></li>
+                    <li><a href="#services">Water heaters</a></li>
+                    <li><a href="#services">Repipe</a></li>
+                    <li><a href="#services">Leak detection</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#promise">About</a></li>
+                    <li><a href="#work">Projects</a></li>
+                    <li><a href="#promise">Reviews</a></li>
+                    <li><a href="#quote-section">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get in Touch</h4>
+                <ul>
+                    <li><a href="tel:5125550142">📞 (512) 555-0142</a></li>
+                    <li>✉️ hello@manifoldplumbing.com</li>
+                    <li>🕒 24/7 Emergency Dispatch</li>
+                </ul>
+            </div>
+        </div>
+        <div style="max-width: 1280px; margin: 0 auto; border-top: 1px solid #1e293b; padding-top: 24px; font-size: 0.75rem; color: #64748b; display: flex; justify-content: space-between;">
+            <p>TX Master Plumber License M-40199 · RMP · © 2026 Manifold Plumbing. All rights reserved.</p>
+            <p>Privacy · Terms · Licenses</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        function setUrgency(btn) {
+            document.querySelectorAll('.urgency-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function slide(val) {
+            document.getElementById('slider-overlay').style.width = val + '%';
+            document.getElementById('slider-handle').style.left = val + '%';
+        }
+
+        function handleQuote(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = "Quote Request Received!";
+            document.getElementById('toast-message').innerText = "A licensed plumber in Austin is reviewing your request and will call within 15 minutes.";
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 5000);
+            e.target.reset();
+        }
+
+        // GSAP Navbar scroll behavior
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbar = document.querySelector(".navbar");
+            if (!navbar || !window.gsap || !window.ScrollTrigger) return;
+            gsap.registerPlugin(ScrollTrigger);
+            navbar.style.transition = "transform .35s ease";
+            
+            let lastScroll = 0;
+            ScrollTrigger.create({
+                start: 0,
+                end: 99999,
+                onUpdate: (self) => {
+                    let st = self.scroll();
+                    if (st < 90) {
+                        navbar.style.transform = "none";
+                        lastScroll = st;
+                        return;
+                    }
+                    if (st > lastScroll + 4) {
+                        navbar.style.transform = "translateY(-100%)";
+                    } else if (st < lastScroll - 4) {
+                        navbar.style.transform = "none";
+                    }
+                    lastScroll = st;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
