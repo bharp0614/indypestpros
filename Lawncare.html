@@ -1,0 +1,451 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>GreenThumb Lawn Care | Local Mowing & Landscaping Services</title>  
+  <style>  
+    /* CSS Design System & Variables */  
+    :root {  
+      --color-primary: #2e7d32;  
+      --color-primary-hover: #1b5e20;  
+      --color-secondary: #4caf50;  
+      --color-cta: #f59e0b;  
+      --color-cta-hover: #d97706;  
+      --color-dark: #1c1917;  
+      --color-light: #f8fafc;  
+      --color-surface: #ffffff;  
+      --color-text-main: #0f172a;  
+      --color-text-muted: #64748b;  
+      --color-border: #e2e8f0;  
+  
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;  
+      --radius-sm: 6px;  
+      --radius-md: 12px;  
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);  
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1);  
+    }  
+  
+    * {  
+      box-sizing: border-box;  
+      margin: 0;  
+      padding: 0;  
+    }  
+  
+    body {  
+      font-family: var(--font-sans);  
+      background-color: var(--color-light);  
+      color: var(--color-text-main);  
+      line-height: 1.6;  
+    }  
+  
+    /* Navigation Header */  
+    header {  
+      background: var(--color-surface);  
+      border-bottom: 1px solid var(--color-border);  
+      position: sticky;  
+      top: 0;  
+      z-index: 100;  
+    }  
+  
+    .nav-container {  
+      max-width: 1200px;  
+      margin: 0 auto;  
+      padding: 1rem 1.5rem;  
+      display: flex;  
+      align-items: center;  
+      justify-content: space-between;  
+    }  
+  
+    .logo {  
+      font-size: 1.5rem;  
+      font-weight: 800;  
+      color: var(--color-primary);  
+      text-decoration: none;  
+      display: flex;  
+      align-items: center;  
+      gap: 0.5rem;  
+    }  
+  
+    .nav-links {  
+      display: flex;  
+      gap: 1.5rem;  
+      list-style: none;  
+    }  
+  
+    .nav-links a {  
+      text-decoration: none;  
+      color: var(--color-text-main);  
+      font-weight: 500;  
+      transition: color 0.2s;  
+    }  
+  
+    .nav-links a:hover {  
+      color: var(--color-primary);  
+    }  
+  
+    /* Buttons */  
+    .btn {  
+      display: inline-block;  
+      padding: 0.75rem 1.5rem;  
+      border-radius: var(--radius-sm);  
+      font-weight: 600;  
+      text-decoration: none;  
+      text-align: center;  
+      border: none;  
+      cursor: pointer;  
+      transition: background-color 0.2s, transform 0.1s;  
+    }  
+  
+    .btn-cta {  
+      background-color: var(--color-cta);  
+      color: #ffffff;  
+    }  
+  
+    .btn-cta:hover {  
+      background-color: var(--color-cta-hover);  
+    }  
+  
+    /* Hero Section */  
+    .hero {  
+      background: linear-gradient(135deg, var(--color-dark) 0%, #292524 100%);  
+      color: #ffffff;  
+      padding: 5rem 1.5rem 6rem;  
+      text-align: center;  
+    }  
+  
+    .hero-container {  
+      max-width: 800px;  
+      margin: 0 auto;  
+    }  
+  
+    .hero h1 {  
+      font-size: 2.75rem;  
+      font-weight: 800;  
+      line-height: 1.2;  
+      margin-bottom: 1rem;  
+    }  
+  
+    .hero p {  
+      font-size: 1.25rem;  
+      color: #d6d3d1;  
+      margin-bottom: 1.5rem;  
+    }  
+  
+    /* Interactive Quote Estimator Section */  
+    .calculator-section {  
+      max-width: 700px;  
+      margin: -3.5rem auto 4rem;  
+      padding: 0 1.5rem;  
+      position: relative;  
+      z-index: 10;  
+    }  
+  
+    .calc-card {  
+      background: var(--color-surface);  
+      border: 1px solid var(--color-border);  
+      border-radius: var(--radius-md);  
+      padding: 2rem;  
+      box-shadow: var(--shadow-md);  
+    }  
+  
+    .calc-title {  
+      font-size: 1.5rem;  
+      color: var(--color-primary);  
+      margin-bottom: 1.25rem;  
+      text-align: center;  
+    }  
+  
+    .form-group {  
+      margin-bottom: 1.25rem;  
+    }  
+  
+    label {  
+      display: block;  
+      font-weight: 600;  
+      margin-bottom: 0.5rem;  
+      font-size: 0.95rem;  
+    }  
+  
+    select {  
+      width: 100%;  
+      padding: 0.75rem;  
+      border: 1px solid var(--color-border);  
+      border-radius: var(--radius-sm);  
+      background-color: var(--color-light);  
+      font-size: 1rem;  
+      color: var(--color-text-main);  
+    }  
+  
+    .checkbox-group {  
+      display: grid;  
+      gap: 0.75rem;  
+      margin-top: 0.5rem;  
+    }  
+  
+    .checkbox-label {  
+      display: flex;  
+      align-items: center;  
+      gap: 0.75rem;  
+      font-weight: normal;  
+      cursor: pointer;  
+      padding: 0.6rem 0.75rem;  
+      border-radius: var(--radius-sm);  
+      border: 1px solid var(--color-border);  
+      transition: background-color 0.15s;  
+    }  
+  
+    .checkbox-label:hover {  
+      background-color: var(--color-light);  
+    }  
+  
+    .checkbox-label input {  
+      width: 1.1rem;  
+      height: 1.1rem;  
+      accent-color: var(--color-primary);  
+    }  
+  
+    .estimate-box {  
+      background-color: #f0fdf4;  
+      border: 2px dashed var(--color-secondary);  
+      border-radius: var(--radius-md);  
+      padding: 1.5rem;  
+      text-align: center;  
+      margin-top: 1.5rem;  
+    }  
+  
+    .estimate-box span {  
+      display: block;  
+      font-size: 0.85rem;  
+      color: var(--color-text-muted);  
+      text-transform: uppercase;  
+      letter-spacing: 0.05em;  
+    }  
+  
+    .estimate-price {  
+      font-size: 2.75rem;  
+      font-weight: 800;  
+      color: var(--color-primary);  
+      margin: 0.25rem 0;  
+    }  
+  
+    /* Services Section */  
+    .services {  
+      max-width: 1200px;  
+      margin: 5rem auto;  
+      padding: 0 1.5rem;  
+    }  
+  
+    .section-title {  
+      text-align: center;  
+      margin-bottom: 3rem;  
+    }  
+  
+    .section-title h2 {  
+      font-size: 2rem;  
+      color: var(--color-primary);  
+    }  
+  
+    .section-title p {  
+      color: var(--color-text-muted);  
+    }  
+  
+    .service-grid {  
+      display: grid;  
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+      gap: 2rem;  
+    }  
+  
+    .service-card {  
+      background: var(--color-surface);  
+      border: 1px solid var(--color-border);  
+      border-radius: var(--radius-md);  
+      padding: 2rem;  
+      box-shadow: var(--shadow-sm);  
+      transition: border-color 0.2s, box-shadow 0.2s;  
+    }  
+  
+    .service-card:hover {  
+      border-color: var(--color-secondary);  
+      box-shadow: var(--shadow-md);  
+    }  
+  
+    .service-card h3 {  
+      font-size: 1.25rem;  
+      margin-bottom: 0.75rem;  
+      color: var(--color-primary);  
+    }  
+  
+    .service-card p {  
+      color: var(--color-text-muted);  
+      font-size: 0.95rem;  
+    }  
+  
+    /* Footer */  
+    footer {  
+      background-color: var(--color-dark);  
+      color: #a8a29e;  
+      padding: 3rem 1.5rem 1.5rem;  
+    }  
+  
+    .footer-container {  
+      max-width: 1200px;  
+      margin: 0 auto;  
+      display: flex;  
+      flex-wrap: wrap;  
+      justify-content: space-between;  
+      gap: 2rem;  
+      border-bottom: 1px solid #292524;  
+      padding-bottom: 2rem;  
+    }  
+  
+    .footer-col h4 {  
+      color: #ffffff;  
+      margin-bottom: 1rem;  
+    }  
+  
+    .copyright {  
+      text-align: center;  
+      padding-top: 1.5rem;  
+      font-size: 0.875rem;  
+    }  
+  
+    @media (max-width: 768px) {  
+      .hero h1 { font-size: 2rem; }  
+      .nav-links { display: none; }  
+    }  
+  </style>  
+</head>  
+<body>  
+  
+  <!-- Navigation -->  
+  <header>  
+    <div class="nav-container">  
+      <a href="#" class="logo">🌱 GreenThumb Care</a>  
+      <ul class="nav-links">  
+        <li><a href="#quote">Instant Quote</a></li>  
+        <li><a href="#services">Services</a></li>  
+        <li><a href="#contact">Contact</a></li>  
+      </ul>  
+      <a href="#quote" class="btn btn-cta">Get Free Quote</a>  
+    </div>  
+  </header>  
+  
+  <!-- Hero Section -->  
+  <section class="hero">  
+    <div class="hero-container">  
+      <h1>Reliable Local Lawn Care & Maintenance</h1>  
+      <p>Professional mowing, fertilization, and yard cleanup to keep your property green all year round.</p>  
+    </div>  
+  </section>  
+  
+  <!-- Instant Quote Estimator -->  
+  <section class="calculator-section" id="quote">  
+    <div class="calc-card">  
+      <h2 class="calc-title">Instant Price Estimator</h2>  
+        
+      <div class="form-group">  
+        <label for="yardSize">1. Select Yard Size</label>  
+        <select id="yardSize" onchange="calculateQuote()">  
+          <option value="40">Small Lawn (Up to 1/4 Acre) - $40 base</option>  
+          <option value="60" selected>Medium Lawn (1/4 to 1/2 Acre) - $60 base</option>  
+          <option value="90">Large Lawn (1/2 to 1 Acre) - $90 base</option>  
+        </select>  
+      </div>  
+  
+      <div class="form-group">  
+        <label for="frequency">2. Service Frequency</label>  
+        <select id="frequency" onchange="calculateQuote()">  
+          <option value="1.0" selected>Weekly Service (Best Value)</option>  
+          <option value="1.2">Bi-Weekly Service (+20%)</option>  
+          <option value="1.5">One-Time Cut (+50%)</option>  
+        </select>  
+      </div>  
+  
+      <div class="form-group">  
+        <label>3. Add-on Services</label>  
+        <div class="checkbox-group">  
+          <label class="checkbox-label">  
+            <input type="checkbox" value="15" class="addon" onchange="calculateQuote()">  
+            Perimeter String Trimming & Edging (+$15)  
+          </label>  
+          <label class="checkbox-label">  
+            <input type="checkbox" value="25" class="addon" onchange="calculateQuote()">  
+            Hardscape Blowoff & Debris Clear (+$25)  
+          </label>  
+          <label class="checkbox-label">  
+            <input type="checkbox" value="40" class="addon" onchange="calculateQuote()">  
+            Fertilizer Application (+$40)  
+          </label>  
+        </div>  
+      </div>  
+  
+      <div class="estimate-box">  
+        <span>Estimated Cost Per Visit</span>  
+        <div class="estimate-price" id="totalPrice">$60</div>  
+        <p style="font-size: 0.85rem; color: var(--color-text-muted);">Final pricing confirmed upon initial property walk.</p>  
+        <button class="btn btn-cta" style="width: 100%; margin-top: 1rem; font-size: 1.05rem;">Book This Rate</button>  
+      </div>  
+    </div>  
+  </section>  
+  
+  <!-- Services Grid -->  
+  <section id="services" class="services">  
+    <div class="section-title">  
+      <h2>Our Lawn Care Services</h2>  
+      <p>Quality residential care tailored to your neighborhood</p>  
+    </div>  
+    <div class="service-grid">  
+      <div class="service-card">  
+        <h3>Lawn Mowing & Edging</h3>  
+        <p>Regular scheduled mowing including precise perimeter string trimming, edging along driveways, and hardscape blowing.</p>  
+      </div>  
+      <div class="service-card">  
+        <h3>Fertilization & Weed Control</h3>  
+        <p>Targeted seasonal treatments that nourish root systems while keeping opportunistic broadleaf weeds out.</p>  
+      </div>  
+      <div class="service-card">  
+        <h3>Spring & Fall Cleanup</h3>  
+        <p>Leaf raking, seasonal aeration, and organic debris removal to prepare your lawn for seasonal transitions.</p>  
+      </div>  
+    </div>  
+  </section>  
+  
+  <!-- Footer Section -->  
+  <footer id="contact">  
+    <div class="footer-container">  
+      <div class="footer-col">  
+        <h4>GreenThumb Care</h4>  
+        <p>Serving local residential properties with pride.</p>  
+      </div>  
+      <div class="footer-col">  
+        <h4>Get In Touch</h4>  
+        <p>📞 (555) 019-2831</p>  
+        <p>✉️ service@greenthumbcare.com</p>  
+      </div>  
+    </div>  
+    <p class="copyright">&copy; 2026 GreenThumb Lawn Care. All rights reserved.</p>  
+  </footer>  
+  
+  <!-- Instant Quote Calculation Engine -->  
+  <script>  
+    function calculateQuote() {  
+      const basePrice = parseFloat(document.getElementById('yardSize').value);  
+      const freqMultiplier = parseFloat(document.getElementById('frequency').value);  
+        
+      let addonsTotal = 0;  
+      const checkboxes = document.querySelectorAll('.addon:checked');  
+      checkboxes.forEach(cb => {  
+        addonsTotal += parseFloat(cb.value);  
+      });  
+  
+      const total = (basePrice * freqMultiplier) + addonsTotal;  
+      document.getElementById('totalPrice').innerText = '$' + total.toFixed(0);  
+    }  
+  
+    // Run initial calculation when DOM is ready  
+    calculateQuote();  
+  </script>  
+  
+</body>  
+</html>  

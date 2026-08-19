@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Business Name] — [City] [Service] You Can Trust</title>
+<meta name="description" content="[Business Name] provides [service] in [City]. Trusted by [X]+ local customers. Call today for a free consultation.">
+
+<!--
+  ╔═══════════════════════════════════════════════════════════════╗
+  ║  MASTER TEMPLATE — Local Service Business                     ║
+  ║                                                               ║
+  ║  HOW TO RESKIN FOR A NEW CLIENT:                              ║
+  ║  1. Change the 6 color variables below                        ║
+  ║  2. Change the 2 font variables                               ║
+  ║  3. Replace text content                                      ║
+  ║  4. Drop in images                                            ║
+  ║  Done. Same structure, new brand.                             ║
+  ║                                                               ║
+  ║  SEO NOTES:                                                   ║
+  ║  • One H1 (hero) — includes city + service keyword            ║
+  ║  • H2 for each section — natural keyword placement            ║
+  ║  • Semantic HTML: <header>, <main>, <section>, <footer>       ║
+  ║  • Proper aria labels and alt text placeholders               ║
+  ║  • Fast — no JS frameworks, no heavy animations               ║
+  ╚═══════════════════════════════════════════════════════════════╝
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   CLIENT RESKIN ZONE — Change these to rebrand
+   
+   For each new client, update these variables.
+   Everything else inherits automatically.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* BRAND COLORS — swap per client */
+  --brand:      #1a5632;        /* Primary — green = trust, health, growth */
+  --brand-dark: #123d23;        /* Darker shade for hovers */
+  --brand-light:#eef6f0;        /* Tinted background */
+  --ink:        #1a1a1a;        /* Headings */
+  --body:       #4a4a4a;        /* Body text */
+  --muted:      #767676;        /* Secondary text — WCAG AA on white */
+  --border:     #e0e0e0;
+  --surface:    #ffffff;
+  --paper:      #fafaf8;
+
+  /* BRAND FONTS — swap per client */
+  --font-heading: 'Libre Baskerville', Georgia, serif;  /* Trust, authority */
+  --font-body:    'DM Sans', system-ui, sans-serif;     /* Clean, modern */
+
+
+  /* ═══════════════════════════════════════════════════════
+     YOUR UTOPIA TOKENS — Don't change these per client.
+     This is your spacing system. It stays consistent.
+     ═══════════════════════════════════════════════════════ */
+
+  --space-3xs: clamp(0.25rem, 0.2321rem + 0.0893vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.4643rem + 0.1786vw, 0.625rem);
+  --space-xs:  clamp(0.75rem, 0.6964rem + 0.2679vw, 0.9375rem);
+  --space-s:   clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+  --space-m:   clamp(1.5rem, 1.3929rem + 0.5357vw, 1.875rem);
+  --space-l:   clamp(2rem, 1.8571rem + 0.7143vw, 2.5rem);
+  --space-xl:  clamp(3rem, 2.7857rem + 1.0714vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.7143rem + 1.4286vw, 5rem);
+  --space-3xl: clamp(6rem, 5.5714rem + 2.1429vw, 7.5rem);
+
+  --space-s-m:     clamp(1rem, 0.75rem + 1.25vw, 1.875rem);
+  --space-m-l:     clamp(1.5rem, 1.2143rem + 1.4286vw, 2.5rem);
+  --space-l-xl:    clamp(2rem, 1.5rem + 2.5vw, 3.75rem);
+  --space-xl-2xl:  clamp(3rem, 2.4286rem + 2.8571vw, 5rem);
+  --space-2xl-3xl: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --space-s-l:     clamp(1rem, 0.5714rem + 2.1429vw, 2.5rem);
+  --space-m-xl:    clamp(1.5rem, 0.8571rem + 3.2143vw, 3.75rem);
+  --space-l-2xl:   clamp(2rem, 1.1429rem + 4.2857vw, 5rem);
+
+  /* YOUR CHEAT SHEET — Font sizes (fluid) */
+  --text-h1:    clamp(2.25rem, 1.5rem + 3.2vw, 4rem);
+  --text-h2:    clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  --text-h3:    clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-body:  clamp(1rem, 0.9286rem + 0.3571vw, 1.125rem);
+  --text-small: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
+  --text-btn:   clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+
+  /* YOUR CHEAT SHEET — Line heights */
+  --lh-body: 1.7;
+  --lh-heading: 1.2;
+
+  --radius: 6px;
+}
+
+
+/* ═══ RESET ═══ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--body);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+
+/* ═══ CONTAINER ═══ */
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+@media (max-width: 768px) { .wrap { padding: 0 var(--space-s); } }
+
+
+/* ═══ SECTION SPACING ═══
+   Cheat sheet: 100–200px between sections → using 60–100px padding each side */
+.sec {
+  padding: var(--space-xl-2xl) 0;
+}
+
+
+/* ═══ SHARED TYPOGRAPHY ═══ */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  line-height: var(--lh-heading);
+}
+h1 { font-size: var(--text-h1); font-weight: 700; }
+h2 { font-size: var(--text-h2); font-weight: 700; }
+h3 { font-size: var(--text-h3); font-weight: 700; }
+p  { margin-bottom: var(--space-s); }
+p:last-child { margin-bottom: 0; }
+
+
+/* ═══ BUTTONS ═══ 
+   Cheat sheet: CTA 16–20px, bold */
+.btn {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-m);
+  font-family: var(--font-body);
+  font-size: var(--text-btn);
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-main {
+  background: var(--brand);
+  color: var(--surface);
+  border-color: var(--brand);
+}
+.btn-main:hover {
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+}
+.btn-white {
+  background: var(--surface);
+  color: var(--brand);
+}
+.btn-white:hover { background: var(--brand-light); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   1. HEADER
+   Sticky, clean, fast. Logo left, nav right, CTA visible.
+   ═══════════════════════════════════════════════════════════ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.site-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.main-nav { display: flex; align-items: center; gap: var(--space-m); }
+
+.main-nav a {
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.main-nav a:hover { color: var(--ink); }
+
+.header-cta {
+  font-size: var(--text-small) !important;
+  font-weight: 700 !important;
+  color: var(--surface) !important;
+  background: var(--brand);
+  padding: var(--space-2xs) var(--space-s);
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+.header-cta:hover { background: var(--brand-dark); }
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .menu-toggle { display: block; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   2. HERO
+   H1 with [City] + [Service] for local SEO.
+   Trust signals immediately visible.
+   ═══════════════════════════════════════════════════════════ */
+
+.hero {
+  padding: var(--space-2xl-3xl) 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: var(--space-xs);
+}
+
+.hero h1 {
+  margin-bottom: var(--space-s-m);
+  letter-spacing: -0.01em;
+}
+
+.hero-sub {
+  font-size: var(--text-body);
+  color: var(--body);
+  max-width: 460px;
+  margin-bottom: var(--space-m);
+}
+
+.hero-btns {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-m);
+}
+
+/* Trust bar — show proof immediately */
+.trust-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--border);
+}
+
+.trust-item {
+  font-size: var(--text-small);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.trust-item strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.hero-img {
+  aspect-ratio: 4/3;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-img { aspect-ratio: 16/9; }
+  .trust-bar { flex-wrap: wrap; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   3. SERVICES
+   What do you do? Make it scannable. 3 columns → 1 on mobile.
+   ═══════════════════════════════════════════════════════════ */
+
+.services-bg { background: var(--surface); }
+
+.sec-intro {
+  max-width: 560px;
+  margin-bottom: var(--space-l-xl);
+}
+.sec-intro .eyebrow {
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand);
+  margin-bottom: var(--space-2xs);
+}
+.sec-intro h2 { margin-bottom: var(--space-xs); }
+.sec-intro p { color: var(--muted); margin-bottom: 0; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-s);
+}
+
+.svc {
+  padding: var(--space-m-l);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  transition: border-color 0.2s;
+}
+.svc:hover { border-color: var(--brand); }
+
+.svc-icon {
+  width: 44px; height: 44px;
+  background: var(--brand-light);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: var(--space-xs);
+  color: var(--brand);
+}
+
+.svc h3 { margin-bottom: var(--space-2xs); }
+.svc p { color: var(--muted); font-size: var(--text-small); margin-bottom: 0; }
+
+@media (max-width: 992px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+
+
+/* ═══════════════════════════════════════════════════════════
+   4. WHY US / TRUST SECTION
+   Credentials, experience, differentiators.
+   2-column: image + text with checklist.
+   ═══════════════════════════════════════════════════════════ */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.why-img {
+  aspect-ratio: 5/4;
+  background: var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: var(--text-small);
+}
+
+.why-text .eyebrow {
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand);
+  margin-bottom: var(--space-2xs);
+}
+
+.why-text h2 { margin-bottom: var(--space-s); }
+.why-text > p { color: var(--muted); }
+
+.check-list {
+  margin-top: var(--space-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+.check-list li {
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--ink);
+  padding-left: var(--space-m);
+  position: relative;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
+
+
+/* ═══════════════════════════════════════════════════════════
+   5. SOCIAL PROOF — Stats
+   Big numbers = instant credibility
+   ═══════════════════════════════════════════════════════════ */
+
+.stats-bg {
+  background: var(--brand);
+  color: var(--surface);
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-m);
+  text-align: center;
+}
+
+.stat-num {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-txt {
+  font-size: var(--text-small);
+  opacity: 0.75;
+  margin-top: var(--space-2xs);
+}
+
+@media (max-width: 768px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+
+
+/* ═══════════════════════════════════════════════════════════
+   6. TESTIMONIALS
+   Real quotes from real people. Trust builder #1.
+   ═══════════════════════════════════════════════════════════ */
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-s);
+}
+
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-m-l);
+}
+
+/* Star rating */
+.stars {
+  color: #d4a017;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-xs);
+}
+
+.test-card blockquote {
+  font-size: var(--text-body);
+  font-style: normal;
+  color: var(--body);
+  margin-bottom: var(--space-m);
+  line-height: var(--lh-body);
+}
+
+.test-who {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.test-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--brand-light);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: var(--text-small);
+  color: var(--brand);
+}
+
+.test-name {
+  font-weight: 700;
+  font-size: var(--text-small);
+  color: var(--ink);
+}
+
+.test-role {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+@media (max-width: 992px) { .test-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .test-grid { grid-template-columns: 1fr; } }
+
+
+/* ═══════════════════════════════════════════════════════════
+   7. CTA BAND
+   One clear call to action. Phone number or form.
+   ═══════════════════════════════════════════════════════════ */
+
+.cta-band {
+  background: var(--brand-light);
+  text-align: center;
+}
+
+.cta-band h2 { margin-bottom: var(--space-xs); }
+.cta-band p { color: var(--muted); max-width: 480px; margin: 0 auto var(--space-m); }
+
+.cta-phone {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  color: var(--brand);
+  display: block;
+  margin-bottom: var(--space-s);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   8. CONTACT / FORM
+   Simple form. Name, email, phone, message.
+   Labels: 14–16px. Fields: 16px. CTA: bold.
+   ═══════════════════════════════════════════════════════════ */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-xl);
+}
+
+.contact-info h2 { margin-bottom: var(--space-s); }
+.contact-info p { color: var(--muted); }
+
+.info-item {
+  margin-top: var(--space-s);
+  font-size: var(--text-body);
+}
+.info-item strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: var(--text-small);
+  margin-bottom: var(--space-3xs);
+}
+
+.form { display: flex; flex-direction: column; gap: var(--space-s); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-s); }
+
+.field label {
+  display: block;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-3xs);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: var(--space-xs);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  outline: none;
+  transition: border-color 0.15s;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--brand);
+}
+
+.form .btn { width: 100%; text-align: center; }
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   9. FOOTER
+   Clean. Address, links, copyright. That's it.
+   ═══════════════════════════════════════════════════════════ */
+
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.55);
+  padding: var(--space-xl) 0 var(--space-m);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--space-l);
+  margin-bottom: var(--space-l);
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-xs);
+}
+
+.footer p { font-size: var(--text-small); }
+
+.footer h4 {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-s);
+}
+
+.footer li { margin-bottom: var(--space-2xs); font-size: var(--text-small); }
+.footer a { transition: color 0.15s; }
+.footer a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: var(--space-s);
+  font-size: var(--text-small);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: var(--space-2xs); }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="#" class="site-name">[Business Name]</a>
+    <nav class="main-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+15551234567" class="header-cta">(555) 123-4567</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+
+<!-- ═══════ HERO ═══════ 
+     SEO: H1 includes [City] + [Service Type]
+     Trust: proof points immediately below CTA -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow">Trusted [Service] in [City]</span>
+        <h1>Quality [service] your home deserves</h1>
+        <p class="hero-sub">Serving [City] and surrounding areas for [X] years. Licensed, insured, and committed to getting the job done right the first time.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-main">Get a Free Quote</a>
+          <a href="tel:+15551234567" class="btn btn-ghost">Call (555) 123-4567</a>
+        </div>
+        <div class="trust-bar">
+          <div class="trust-item">⭐ <strong>4.9</strong>&nbsp;Google Rating</div>
+          <div class="trust-item">✓ <strong>200+</strong>&nbsp;Jobs Completed</div>
+          <div class="trust-item">✓ Licensed &amp; Insured</div>
+        </div>
+      </div>
+      <div class="hero-img">[Hero photo — team or completed project]</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ SERVICES ═══════
+     SEO: H2 with service keywords
+     6 cards → covers most local businesses -->
+<section class="sec services-bg" id="services">
+  <div class="wrap">
+    <div class="sec-intro">
+      <div class="eyebrow">Our Services</div>
+      <h2>What we can do for you</h2>
+      <p>We handle everything from start to finish so you don't have to.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon">🔧</div>
+        <h3>[Service 1]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🏠</div>
+        <h3>[Service 2]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">⚡</div>
+        <h3>[Service 3]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🛡️</div>
+        <h3>[Service 4]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">📋</div>
+        <h3>[Service 5]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">💬</div>
+        <h3>[Service 6]</h3>
+        <p>Brief description of this service and why it matters to the customer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ WHY US ═══════ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-img">[Photo — owner, team, or workspace]</div>
+      <div class="why-text">
+        <div class="eyebrow">Why Choose Us</div>
+        <h2>Honest work. Fair prices. Real results.</h2>
+        <p>We're a locally owned business that treats every job like it's our own home. No shortcuts, no surprises.</p>
+        <ul class="check-list">
+          <li>[X]+ years serving [City]</li>
+          <li>Fully licensed and insured</li>
+          <li>Transparent pricing — no hidden fees</li>
+          <li>100% satisfaction guarantee</li>
+          <li>Same-day response</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ STATS ═══════ -->
+<section class="sec stats-bg">
+  <div class="wrap">
+    <div class="stats-row">
+      <div>
+        <div class="stat-num">[X]+</div>
+        <div class="stat-txt">Years in Business</div>
+      </div>
+      <div>
+        <div class="stat-num">[X]+</div>
+        <div class="stat-txt">Happy Customers</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9</div>
+        <div class="stat-txt">Google Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">24hr</div>
+        <div class="stat-txt">Response Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ TESTIMONIALS ═══════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-intro">
+      <div class="eyebrow">Reviews</div>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"[Real customer quote about the experience, quality of work, and reliability.]"</blockquote>
+        <div class="test-who">
+          <div class="test-avatar">JD</div>
+          <div>
+            <div class="test-name">[Customer Name]</div>
+            <div class="test-role">[City] Homeowner</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"[Real customer quote about timeliness, professionalism, and results.]"</blockquote>
+        <div class="test-who">
+          <div class="test-avatar">SM</div>
+          <div>
+            <div class="test-name">[Customer Name]</div>
+            <div class="test-role">[City] Business Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"[Real customer quote about value, communication, and recommending to others.]"</blockquote>
+        <div class="test-who">
+          <div class="test-avatar">AR</div>
+          <div>
+            <div class="test-name">[Customer Name]</div>
+            <div class="test-role">[City] Resident</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ CTA BAND ═══════ -->
+<section class="sec cta-band">
+  <div class="wrap">
+    <h2>Ready to get started?</h2>
+    <p>Call us today or fill out the form below for a free, no-obligation quote.</p>
+    <a href="tel:+15551234567" class="cta-phone">(555) 123-4567</a>
+    <a href="#contact" class="btn btn-main">Request a Quote</a>
+  </div>
+</section>
+
+
+<!-- ═══════ CONTACT ═══════ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Get in touch</h2>
+        <p>Fill out the form and we'll get back to you within 24 hours. Or call us directly.</p>
+        <div class="info-item">
+          <strong>Phone</strong>
+          (555) 123-4567
+        </div>
+        <div class="info-item">
+          <strong>Email</strong>
+          hello@[business].com
+        </div>
+        <div class="info-item">
+          <strong>Service Area</strong>
+          [City], [Nearby City], [Nearby City]
+        </div>
+        <div class="info-item">
+          <strong>Hours</strong>
+          Mon–Fri 7am–6pm · Sat 8am–2pm
+        </div>
+      </div>
+      <div class="form">
+        <div class="form-row">
+          <div class="field">
+            <label>Name</label>
+            <input type="text" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="field">
+          <label>How can we help?</label>
+          <textarea rows="4" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button class="btn btn-main">Send Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">[Business Name]</div>
+        <p>Trusted [service] in [City] since [year]. Licensed, insured, and ready to help.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">[Service 1]</a></li>
+          <li><a href="#">[Service 2]</a></li>
+          <li><a href="#">[Service 3]</a></li>
+          <li><a href="#">[Service 4]</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>(555) 123-4567</li>
+          <li>hello@[business].com</li>
+          <li>[City], [State]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 [Business Name]. All rights reserved.</span>
+      <span><a href="#">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

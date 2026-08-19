@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenThumb Lawn Care | Instant Quote Estimator</title>
+  <style>
+    :root {
+      --color-primary: #2e7d32;
+      --color-primary-hover: #1b5e20;
+      --color-secondary: #4caf50;
+      --color-cta: #f59e0b;
+      --color-cta-hover: #d97706;
+      --color-dark: #1c1917;
+      --color-light: #f8fafc;
+      --color-surface: #ffffff;
+      --color-text-main: #0f172a;
+      --color-text-muted: #64748b;
+      --color-border: #e2e8f0;
+
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-light);
+      color: var(--color-text-main);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-cta {
+      background-color: var(--color-cta);
+      color: #ffffff;
+    }
+
+    .btn-cta:hover {
+      background-color: var(--color-cta-hover);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--color-dark) 0%, #292524 100%);
+      color: #ffffff;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      color: #d6d3d1;
+      font-size: 1.15rem;
+    }
+
+    /* Estimator Section */
+    .calculator-section {
+      max-width: 700px;
+      margin: -2rem auto 4rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .calc-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .calc-title {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background-color: var(--color-light);
+      font-size: 1rem;
+      color: var(--color-text-main);
+    }
+
+    .checkbox-group {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: normal;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .checkbox-label:hover {
+      background-color: var(--color-light);
+    }
+
+    .checkbox-label input {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: var(--color-primary);
+    }
+
+    /* Estimate Output Box */
+    .estimate-box {
+      background-color: #f0fdf4;
+      border: 2px dashed var(--color-secondary);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .estimate-box span {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .estimate-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin: 0.25rem 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--color-dark);
+      color: #a8a29e;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">🌱 GreenThumb Care</a>
+      <a href="#quote" class="btn btn-cta">Call (555) 019-2831</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Instant Lawn Care Quote</h1>
+    <p>Select your yard size and services below for an instant estimate.</p>
+  </section>
+
+  <section class="calculator-section" id="quote">
+    <div class="calc-card">
+      <h2 class="calc-title">Price Estimator</h2>
+      
+      <!-- Yard Size -->
+      <div class="form-group">
+        <label for="yardSize">1. Select Estimated Yard Size</label>
+        <select id="yardSize" onchange="calculateQuote()">
+          <option value="40">Small Lawn (Up to 1/4 Acre) - $40 base</option>
+          <option value="60" selected>Medium Lawn (1/4 to 1/2 Acre) - $60 base</option>
+          <option value="90">Large Lawn (1/2 to 1 Acre) - $90 base</option>
+        </select>
+      </div>
+
+      <!-- Frequency -->
+      <div class="form-group">
+        <label for="frequency">2. Service Frequency</label>
+        <select id="frequency" onchange="calculateQuote()">
+          <option value="1.0" selected>Weekly Service (Best value)</option>
+          <option value="1.2">Bi-Weekly Service (+20%)</option>
+          <option value="1.5">One-Time Cut (+50%)</option>
+        </select>
+      </div>
+
+      <!-- Add-on Services -->
+      <div class="form-group">
+        <label>3. Add-on Services</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" value="15" class="addon" onchange="calculateQuote()">
+            Perimeter String Trimming & Edging (+$15)
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="25" class="addon" onchange="calculateQuote()">
+            Hardscape Blowoff & Debris Clear (+$25)
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="40" class="addon" onchange="calculateQuote()">
+            Fertilizer Application (+$40)
+          </label>
+        </div>
+      </div>
+
+      <!-- Display Total -->
+      <div class="estimate-box">
+        <span>Estimated Cost Per Visit</span>
+        <div class="estimate-price" id="totalPrice">$60</div>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted);">Final pricing confirmed upon initial property walk.</p>
+        <button class="btn btn-cta" style="width: 100%; margin-top: 1rem;">Book Service Now</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 GreenThumb Lawn Care. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function calculateQuote() {
+      const basePrice = parseFloat(document.getElementById('yardSize').value);
+      const freqMultiplier = parseFloat(document.getElementById('frequency').value);
+      
+      let addonsTotal = 0;
+      const checkboxes = document.querySelectorAll('.addon:checked');
+      checkboxes.forEach(cb => {
+        addonsTotal += parseFloat(cb.value);
+      });
+
+      const total = (basePrice * freqMultiplier) + addonsTotal;
+      document.getElementById('totalPrice').innerText = '$' + total.toFixed(0);
+    }
+
+    // Run initial calculation on page load
+    calculateQuote();
+  </script>
+
+</body>
+</html>

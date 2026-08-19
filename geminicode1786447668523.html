@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Summit Lawn Care · Premier Local Lawn & Landscaping Services</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #172554;
+      --secondary: #16a34a;
+      --secondary-hover: #15803d;
+      --accent: #f59e0b;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --heading-font: 'Helvetica Neue', Arial, sans-serif;
+      --body-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --radius: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --section-space: 80px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--background);
+      font-family: var(--body-font);
+      line-height: 1.6;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    button, select, input, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    .wrap { width: min(1200px, calc(100% - 40px)); margin-inline: auto; }
+
+    /* Top Info Bar */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #ffffff;
+      font-size: 0.85rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .top-bar-info { display: flex; gap: 20px; align-items: center; }
+    .top-bar-info span { display: inline-flex; align-items: center; gap: 6px; }
+    .badge-pill {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    /* Theme Bar Switcher */
+    .theme-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      color: #fff;
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      box-shadow: var(--shadow-md);
+    }
+    .theme-bar-inner {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .theme-bar strong { font-size: .85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
+    .theme-buttons { display: flex; gap: 8px; flex-wrap: wrap; padding: 6px 0; }
+    .theme-button {
+      cursor: pointer;
+      color: #fff;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: .8rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .theme-button:hover,
+    .theme-button[aria-pressed="true"] {
+      color: #0f172a;
+      background: #fff;
+      border-color: #fff;
+    }
+
+    /* Main Header & Nav */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--primary);
+      border-radius: var(--radius);
+      font-family: var(--heading-font);
+      font-size: 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a:not(.button) { 
+      color: var(--text); 
+      font-size: .95rem; 
+      font-weight: 600; 
+      transition: color 0.2s;
+    }
+    .nav-links a:not(.button):hover { color: var(--secondary); }
+
+    /* Buttons */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .button-primary { color: white; background: var(--secondary); border-color: var(--secondary); }
+    .button-primary:hover { background: var(--secondary-hover); border-color: var(--secondary-hover); transform: translateY(-1px); }
+    .button-secondary { color: var(--primary); background: transparent; border-color: var(--primary); }
+    .button-secondary:hover { background: var(--primary); color: white; }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin-top: 0; font-family: var(--heading-font); line-height: 1.15; color: var(--text); }
+    h1 { max-width: 760px; margin: 18px 0; font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; letter-spacing: -.03em; }
+    h2 { margin-bottom: 16px; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; }
+    h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+    .lead { max-width: 680px; color: var(--muted); font-size: 1.125rem; margin-top: 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .proof { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 36px; color: var(--muted); font-size: .9rem; font-weight: 700; border-top: 1px solid var(--border); padding-top: 24px; }
+    .proof span::before { content: "✓"; color: #16a34a; margin-right: 8px; font-weight: 900; }
+
+    /* Hero Image Frame */
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: calc(var(--radius) * 1.5);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+    .hero-overlay-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hero-overlay-badge strong { font-size: 1.1rem; display: block; }
+    .hero-overlay-badge span { font-size: 0.85rem; color: #cbd5e1; }
+
+    /* Authority Strip */
+    .authority-strip {
+      background: var(--surface);
+      border-y: 1px solid var(--border);
+      padding: 24px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .authority-grid {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .auth-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .auth-item strong { display: block; font-size: 1rem; color: var(--text); }
+    .auth-item span { font-size: 0.825rem; color: var(--muted); }
+    .stars { color: var(--accent); letter-spacing: 2px; }
+
+    /* Services Section */
+    section { padding: var(--section-space) 0; }
+    .section-heading { max-width: 680px; margin-bottom: 48px; }
+    .section-heading p { color: var(--muted); font-size: 1.1rem; margin-top: 8px; }
+    .services { background: var(--surface); }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .card {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .card-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0; }
+
+    /* About & Stats Section */
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+    .about-image-container {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .stat-block {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+      background: var(--surface);
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .stat { text-align: center; }
+    .stat strong { display: block; color: var(--primary); font-family: var(--heading-font); font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+    .stat span { font-size: 0.8rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+
+    /* CTA Section */
+    .cta {
+      color: white;
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.1), transparent 40%);
+      pointer-events: none;
+    }
+    .cta-box { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; position: relative; z-index: 1; }
+    .cta h2 { margin-bottom: 8px; color: white; }
+    .cta p { margin: 0; opacity: .9; font-size: 1.1rem; }
+    .cta .button { color: var(--primary); background: var(--accent); border-color: var(--accent); }
+    .cta .button:hover { background: #d97706; border-color: #d97706; color: white; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      font-size: .9rem;
+    }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-inner a { color: #94a3b8; }
+    .footer-inner a:hover { color: #fff; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid, .cta-box { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+      .stat-block { grid-template-columns: 1fr; }
+      .nav-links a:not(.button) { display: none; }
+      .hero-image-wrapper img { height: 320px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <script id="theme-data" type="application/json">
+    {
+      "summit": {
+        "label": "Summit Lawn Care",
+        "primary": "#14532d",
+        "secondary": "#16a34a",
+        "accent": "#f59e0b",
+        "background": "#f0fdf4",
+        "surface": "#ffffff",
+        "text": "#0f172a",
+        "muted": "#64748b",
+        "border": "#bbf7d0",
+        "headingFont": "system-ui, sans-serif",
+        "bodyFont": "system-ui, sans-serif",
+        "radius": "8px",
+        "sectionSpace": "80px"
+      },
+      "modern": {
+        "label": "Modern Turf Blue",
+        "primary": "#075985",
+        "secondary": "#0284c7",
+        "accent": "#38bdf8",
+        "background": "#f0f9ff",
+        "surface": "#ffffff",
+        "text": "#082f49",
+        "muted": "#526777",
+        "border": "#bae6fd",
+        "headingFont": "Arial, Helvetica, sans-serif",
+        "bodyFont": "Arial, Helvetica, sans-serif",
+        "radius": "22px",
+        "sectionSpace": "88px"
+      },
+      "heritage": {
+        "label": "Estate Earth",
+        "primary": "#362419",
+        "secondary": "#a45c2a",
+        "accent": "#d8b66a",
+        "background": "#fbf8f3",
+        "surface": "#fffdf8",
+        "text": "#242a24",
+        "muted": "#687269",
+        "border": "#e7dfd3",
+        "headingFont": "Georgia, 'Times New Roman', serif",
+        "bodyFont": "Verdana, Arial, sans-serif",
+        "radius": "2px",
+        "sectionSpace": "68px"
+      }
+    }
+  </script>
+
+  <!-- Top Announcement / Contact Bar -->
+  <div class="top-bar">
+    <div class="wrap top-bar-inner">
+      <div class="top-bar-info">
+        <span>📍 Serving Central Indiana & Surrounding Neighborhoods</span>
+        <span>🌱 Licensed Turf Applicator #3B-98412</span>
+      </div>
+      <div>
+        <span><strong>Schedule Same-Week Service:</strong> (317) 555-0100</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Switcher Bar -->
+  <div class="theme-bar">
+    <div class="wrap theme-bar-inner">
+      <strong>Theme Preview Options</strong>
+      <div class="theme-buttons" id="theme-buttons" aria-label="Choose a theme"></div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#">
+        <span class="brand-mark">S</span>
+        <span>Summit Lawn Care</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#about">Why Summit</a>
+        <a href="#reviews">Reviews</a>
+        <a class="button button-primary" href="#contact">Get Free Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">
+            <span class="stars">★★★★★</span>
+            Top-Rated Local Lawn Care
+          </span>
+          <h1>A healthier, greener lawn without the weekend hassle.</h1>
+          <p class="lead">Scheduled mowing, turf fertilization, weed control, and seasonal cleanups for homeowners who want reliable, premium lawn maintenance.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#contact">Get an Instant Quote</a>
+            <a class="button button-secondary" href="#services">Explore Services</a>
+          </div>
+          <div class="proof">
+            <span>Licensed & Fully Insured</span>
+            <span>No Long-Term Contracts</span>
+            <span>Same-Day Quotes</span>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb23659?auto=format&fit=crop&w=1000&q=80" alt="Perfectly manicured green lawn with clean mowing stripes">
+          <div class="hero-overlay-badge">
+            <div>
+              <strong>Tailored for Indiana Turf</strong>
+              <span>Mowing · Fertilization · Aeration</span>
+            </div>
+            <span class="badge-pill">BBB A+ Rated</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authority & Trust Bar -->
+    <div class="authority-strip">
+      <div class="wrap authority-grid">
+        <div class="auth-item">
+          <span class="stars">★★★★★</span>
+          <div>
+            <strong>4.9 / 5.0 Rating</strong>
+            <span>300+ Verified Local Reviews</span>
+          </div>
+        </div>
+        <div class="auth-item">
+          <div>
+            <strong>Certified Turf Specialists</strong>
+            <span>Safe, Commercial-Grade Treatments</span>
+          </div>
+        </div>
+        <div class="auth-item">
+          <div>
+            <strong>100% Satisfaction Guarantee</strong>
+            <span>We re-treat free if weeds persist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">What We Do</span>
+          <h2>Complete lawn maintenance tailored to your property.</h2>
+          <p>Dependable weekly services and custom turf treatment plans to keep your yard thick, green, and weed-free.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=600&q=80" alt="Professional lawn mower operating on residential lawn">
+            <div class="card-content">
+              <h3>01. Weekly Mowing & Edging</h3>
+              <p>Precision mowing, sharp string trimming around obstacles, and crisp hard-surface edging with full clipping cleanup.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1584467735815-f778f274e296?auto=format&fit=crop&w=600&q=80" alt="Lawn fertilization and weed treatment application">
+            <div class="card-content">
+              <h3>02. Lawn Fertilization & Weed Control</h3>
+              <p>Custom multi-step treatment programs to feed your grass roots and eliminate stubborn broadleaf weeds year-round.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80" alt="Seasonal yard cleanup and garden bed maintenance">
+            <div class="card-content">
+              <h3>03. Aeration & Seasonal Cleanup</h3>
+              <p>Core aeration, overseeding, and thorough spring/fall leaf removals to prepare your lawn for every season.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-image-container">
+          <img src="https://images.unsplash.com/photo-1599687267812-35c0e37f1beb?auto=format&fit=crop&w=800&q=80" alt="Landscaping and lawn care team at work">
+        </div>
+        <div>
+          <span class="eyebrow">Why Summit</span>
+          <h2>Reliable lawn care crews who respect your property.</h2>
+          <p class="lead">We show up on your scheduled day, close your gates when finished, and deliver consistent quality so you can enjoy your weekend.</p>
+          
+          <div class="stat-block">
+            <div class="stat">
+              <strong>24hr</strong>
+              <span>Quote Turnaround</span>
+            </div>
+            <div class="stat">
+              <strong>12+</strong>
+              <span>Years Local Service</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>Gate-Closed Guarantee</span>
+            </div>
+          </div>
+          
+          <div class="actions">
+            <a class="button button-secondary" href="#contact">Speak with a Lawn Specialist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta" id="contact">
+      <div class="wrap cta-box">
+        <div>
+          <h2>Ready for a greener, hassle-free yard?</h2>
+          <p>Contact our local crew today for your free, fast lawn maintenance estimate.</p>
+        </div>
+        <a class="button" href="tel:+13175550100">Call (317) 555-0100</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 Summit Lawn Care & Landscaping, LLC · All Rights Reserved</span>
+      <span>Licensed · Bonded · Fully Insured</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const themes = JSON.parse(document.getElementById("theme-data").textContent);
+    const buttonArea = document.getElementById("theme-buttons");
+    const root = document.documentElement;
+
+    function applyTheme(id) {
+      const theme = themes[id];
+      if (!theme) return;
+
+      const values = {
+        "--primary": theme.primary,
+        "--secondary": theme.secondary,
+        "--accent": theme.accent,
+        "--background": theme.background,
+        "--surface": theme.surface,
+        "--text": theme.text,
+        "--muted": theme.muted,
+        "--border": theme.border,
+        "--heading-font": theme.headingFont,
+        "--body-font": theme.bodyFont,
+        "--radius": theme.radius,
+        "--section-space": theme.sectionSpace
+      };
+
+      Object.entries(values).forEach(([property, value]) => root.style.setProperty(property, value));
+      document.querySelectorAll(".theme-button").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.theme === id));
+      });
+      document.title = `${theme.label} · Summit Lawn Care`;
+    }
+
+    Object.entries(themes).forEach(([id, theme]) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "theme-button";
+      button.dataset.theme = id;
+      button.textContent = theme.label;
+      button.addEventListener("click", () => applyTheme(id));
+      buttonArea.appendChild(button);
+    });
+
+    applyTheme("summit");
+  </script>
+</body>
+</html>
