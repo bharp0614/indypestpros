@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Indy Pest Pros — Page Library</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    :root{
+      --bg:#101820;--panel:#17232d;--panel-2:#1c2b37;--line:#40515f;
+      --ink:#f5f3ed;--muted:#bdc9d1;--faint:#8fa2af;--accent:#f2a020;
+      color-scheme:light dark;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);padding:32px 20px;line-height:1.6}
+    .wrap{width:min(1080px,100%);margin:0 auto}
+    header{border:1px solid var(--line);border-radius:18px;padding:32px;background:var(--panel);margin-bottom:28px}
+    small{color:var(--faint);letter-spacing:.04em;text-transform:uppercase;font-size:.72rem}
+    h1{margin:.35rem 0 .5rem;font-size:1.9rem;letter-spacing:-.02em}
+    header p{margin:0;color:var(--muted);max-width:60ch}
+    section{margin:26px 0}
+    h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);
+       border-bottom:1px solid var(--line);padding-bottom:8px;margin:0 0 14px}
+    .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+    a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);
+      border:1px solid var(--line);border-radius:12px;padding:16px 18px;transition:.15s}
+    a.card:hover{background:var(--panel-2);border-color:var(--accent);transform:translateY(-2px)}
+    .card .name{font-weight:700;font-size:1.02rem}
+    .card .desc{color:var(--muted);font-size:.86rem;margin-top:4px}
+    .card .path{color:var(--faint);font-size:.74rem;margin-top:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    footer{color:var(--faint);font-size:.8rem;margin-top:36px;border-top:1px solid var(--line);padding-top:16px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <small>indypestpros.com</small>
+      <h1>Page Library</h1>
+      <p>Working collection of landing-page builds, sorted into folders by industry and type. Click any card to preview the page.</p>
+    </header>
+
+    <section>
+      <h2>Roofing</h2>
+      <div class="grid">
+        <a class="card" href="roofing/summit-roofing.html">
+          <div class="name">Summit Roofing</div>
+          <div class="desc">Professional local roofing services landing page.</div>
+          <div class="path">roofing/summit-roofing.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Lawn Care</h2>
+      <div class="grid">
+        <a class="card" href="lawn-care/greenthumb-instant-quote.html">
+          <div class="name">GreenThumb — Instant Quote</div>
+          <div class="desc">Interactive instant lawn-care quote estimator.</div>
+          <div class="path">lawn-care/greenthumb-instant-quote.html</div>
+        </a>
+        <a class="card" href="lawn-care/greenthumb-services.html">
+          <div class="name">GreenThumb — Services</div>
+          <div class="desc">Local mowing &amp; landscaping services page.</div>
+          <div class="path">lawn-care/greenthumb-services.html</div>
+        </a>
+        <a class="card" href="lawn-care/summit-lawn-care-v1.html">
+          <div class="name">Summit Lawn Care — v1</div>
+          <div class="desc">Premier lawn &amp; landscaping landing page (variant 1).</div>
+          <div class="path">lawn-care/summit-lawn-care-v1.html</div>
+        </a>
+        <a class="card" href="lawn-care/summit-lawn-care-v2.html">
+          <div class="name">Summit Lawn Care — v2</div>
+          <div class="desc">Premier lawn &amp; landscaping landing page (variant 2).</div>
+          <div class="path">lawn-care/summit-lawn-care-v2.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>HVAC</h2>
+      <div class="grid">
+        <a class="card" href="hvac/northside-heating-air.html">
+          <div class="name">Northside Heating &amp; Air</div>
+          <div class="desc">24/7 emergency HVAC conversion landing page.</div>
+          <div class="path">hvac/northside-heating-air.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Locksmith</h2>
+      <div class="grid">
+        <a class="card" href="locksmith/apex-locksmith-services.html">
+          <div class="name">Apex 24/7 Locksmiths</div>
+          <div class="desc">Locksmith &amp; security services index.</div>
+          <div class="path">locksmith/apex-locksmith-services.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Plumbing</h2>
+      <div class="grid">
+        <a class="card" href="plumbing/manifold-plumbing.html">
+          <div class="name">Manifold Plumbing</div>
+          <div class="desc">Full-service plumbing landing page.</div>
+          <div class="path">plumbing/manifold-plumbing.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Real Estate</h2>
+      <div class="grid">
+        <a class="card" href="real-estate/residential-redevelopment.html">
+          <div class="name">Residential Redevelopment</div>
+          <div class="desc">Direct-to-seller property redevelopment page.</div>
+          <div class="path">real-estate/residential-redevelopment.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Templates</h2>
+      <div class="grid">
+        <a class="card" href="templates/generic-local-service.html">
+          <div class="name">Generic Local Service</div>
+          <div class="desc">Re-skinnable local-service template with placeholders.</div>
+          <div class="path">templates/generic-local-service.html</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Components &amp; Labs</h2>
+      <div class="grid">
+        <a class="card" href="components/agency-os-test-bench.html">
+          <div class="name">Agency OS Test Bench</div>
+          <div class="desc">Component lab &amp; live design-token playground.</div>
+          <div class="path">components/agency-os-test-bench.html</div>
+        </a>
+        <a class="card" href="components/premium-sections-showcase.html">
+          <div class="name">Premium Sections Showcase</div>
+          <div class="desc">Reusable Tailwind section blocks.</div>
+          <div class="path">components/premium-sections-showcase.html</div>
+        </a>
+        <a class="card" href="components/developer-hub.html">
+          <div class="name">Developer Hub</div>
+          <div class="desc">Interactive articles &amp; network troubleshooter.</div>
+          <div class="path">components/developer-hub.html</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      Static preview library. Deployment files (<code>/index.html</code>, <code>/public</code>, <code>wrangler.jsonc</code>) are unchanged.
+    </footer>
+  </div>
+</body>
+</html>
